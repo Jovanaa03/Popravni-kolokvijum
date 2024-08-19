@@ -1,0 +1,25 @@
+<div class="card container bg-light my-2">
+    <div class="row my-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <?php echo $tema["naziv"]; ?>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <?php echo $tema["oblast"]; ?>
+                    </h6>
+                    <p class="card-text">
+                        <?php echo $tema["opis"]; ?>
+                    </p>
+                    <div class="dropdown-divider py-4"></div>
+
+                    <!-- Jednostavno dugme za uređivanje -->
+                    <a href="update_tema.php?id=<?php echo $tema['id']; ?>" class="btn btn-warning">
+                        Uredi Temu
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

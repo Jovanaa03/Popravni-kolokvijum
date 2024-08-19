@@ -1,0 +1,75 @@
+<?php
+require_once("../php/db.php");
+include_once "../php/env.php";
+session_start();
+
+if (!isset($_SESSION["id"])) {
+    header("Location: <?php echo $url; ?>stranice/prijava/prijava.php");
+    exit();
+}
+
+$user_id = $_SESSION["id"];
+
+if (isset($_POST["delete"])) {
+    $stmt = $conn->prepare("DELETE FROM korisnik WHERE id=?");
+    $stmt->bind_param("i", $user_id);
+
+    if ($stmt->execute()) {
+        // After deletion, log the user out and redirect to the homepage
+        session_destroy();
+        header("Location: <?php echo $url; ?>stranice/pocetna.php");
+        exit();
+    } else {
+        $error_message = "Došlo je do greške prilikom brisanja naloga.";
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <title>Obriši Nalog</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="<?php echo $url; ?>stranice/pocetna.php">Pitaj programera</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo $url; ?>stranice/teme/teme.php">Teme</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo $url; ?>stranice/profil/profil.php">Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo $url; ?>stranice/odjava.php">Odjava</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container my-5">
+        <h2 class="text-center">Obriši Nalog</h2>
+        <?php if (isset($error_message)) { ?>
+            <div class="alert alert-danger"><?php echo $error_message; ?></div>
+        <?php } ?>
+        <form method="POST" action="delete_user.php">
+            <div class="form-group">
+                <p>Da li ste sigurni da želite da obrišete svoj nalog? Ova akcija je nepovratna.</p>
+            </div>
+            <button type="submit" name="delete" class="btn btn-danger">Obriši Nalog</button>
+        </form>
+    </div>
+    <footer class="text-center fixed-bottom text-lg-start">
+        <div class="text-center text-white p-3">
+            © 2024 Copyright:
+            <a class="text-white" href="#">pitaj-programera.com</a>
+        </div>
+    </footer>
+</body>
+</html>

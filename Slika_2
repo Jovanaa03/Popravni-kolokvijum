@@ -4,7 +4,7 @@
 include_once "../../php/env.php";
    session_start();
    $data = $conn->query("SELECT * FROM tema where id_korisnika=" . $_SESSION["id"]);
-   if(isset($_GET["brisanje"])){
+p   if(isset($_GET["brisanje"])){
    
       $statement = $conn-> prepare("DELETE FROM komentar WHERE id_teme=?" );
    
@@ -30,7 +30,7 @@ include_once "../../php/env.php";
           header("Location: ./profil.php");
       }
    }
-   ?>
+ p  ?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -93,7 +93,7 @@ include_once "../../php/env.php";
                      <th scope="col">Naziv</th>
                      <th scope="col">Oblast</th>
                      <th scope="col">Opis</th>
-                     <th scope="col">Akcije</th>
+ p                    <th scope="col">Akcije</th>
                   </tr>
                </thead>
                <tbody>
@@ -104,7 +104,7 @@ include_once "../../php/env.php";
                      <td><?php echo $row["naziv"];?></td>
                      <td><?php echo $row["oblast"];?></td>
                      <td><?php echo $row["opis"];?></td>
-                     <td>
+p                     <td>
                         <a href="<?php echo $url;  ?>stranice/profil/profil.php?brisanje=<?php echo $row["id"] ?>">
                            <button>
                               Brisanje
@@ -115,7 +115,7 @@ include_once "../../php/env.php";
                               Izmena
                            </button>
                         </a>
-                     </td>
+p                     </td>
                   </tr>
                   <?php
                      }

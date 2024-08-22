@@ -3,7 +3,7 @@
    include_once "../../php/env.php";
    session_start();
 
-   $opis = "";
+p   $opis = "";
    $naziv = "";
    $oblast = "";
 
@@ -30,7 +30,7 @@
          $naziv = $data["naziv"];
          $oblast = $data["oblast"];
       }
-   }
+p   }
 
    if(isset($_POST["opis"])){
       $opis_objave = $_POST["opis"];
@@ -105,8 +105,8 @@
             <div class="row my-3">
                <div class="col">
                   <div class="card">
-                     <div class="card-body ">
-                        <?php
+                     <div class="card-body "> posle ovoga brisesd neki post
+ p                       <?php
                            if(isset($_REQUEST["izmena"])){
                            ?>
                               <form method="POST" action="<?php echo $url;  ?>stranice/nova_objava/nova_objava.php?izmena=<?php echo $_REQUEST["izmena"] ?>">
@@ -117,10 +117,10 @@
                               <form method="POST">
                            <?php
                            }
-                        ?>
+ p                       ?>
                            <div class="row mb-4">
-                              <div class="col text-center">
-                                 <?php
+                              <div class="col text-center"> ovde izbaci nova tema
+ p                                <?php
                                     if(isset($_REQUEST["izmena"])){
                                     ?>
                                        <h3> Izmena teme </h3> 
@@ -131,7 +131,7 @@
                                        <h3> Nova tema </h3>
                                     <?php
                                     }
-                                 ?>
+  p                               ?>
                               </div>
                            </div>
                            <div data-mdb-input-init class="form-outline mb-4">
